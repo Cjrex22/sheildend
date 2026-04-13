@@ -1,0 +1,18 @@
+server:
+  port: 8080
+firebase:
+  service-account-key: YOUR_VALUE_HERE
+  project-id: YOUR_VALUE_HERE
+  storage-bucket: YOUR_VALUE_HERE
+cors:
+  allowed-origins: YOUR_VALUE_HERE
+spring:
+  application:
+    name: sheild-backend
+  web:
+    resources:
+      static-locations: classpath:/static/
+      cache:
+        period: 0
+  mvc:
+    static-path-pattern: /**
