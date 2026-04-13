@@ -312,13 +312,12 @@ export default function SettingsPage() {
                                             if (!deferredPrompt) {
                                                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                                                 if (isIOS) {
-                                                    toast("Apple blocks auto-install. Tap Share ⬆️ and 'Add to Home Screen' to install.", { duration: 6000 });
+                                                    toast("Apple requires manual install: Tap Share ⬆️ and 'Add to Home Screen'.", { duration: 6000 });
                                                 } else {
-                                                    toast.error("Browser blocked popup. Try reinstalling from the 3-dot menu or clear site data.", { duration: 5000 });
+                                                    toast.success("Tap the 3-dots (⋮) in your browser menu and select 'Install App' or 'Add to Home screen'", { duration: 6000, icon: '📱' });
                                                 }
                                                 return;
                                             }
-                                            setIsInstalling(true);
                                             try {
                                                 await deferredPrompt.prompt();
                                                 const { outcome } = await deferredPrompt.userChoice;
@@ -330,7 +329,7 @@ export default function SettingsPage() {
                                                     toast('Installation cancelled', { icon: '⚠️' });
                                                 }
                                             } catch (err) {
-                                                toast.error('Installation failed');
+                                                toast.error('Installation failed. Please use your browser menu to install.');
                                             } finally {
                                                 setIsInstalling(false);
                                             }
